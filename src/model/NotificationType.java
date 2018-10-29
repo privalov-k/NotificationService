@@ -3,7 +3,7 @@ package model;
 /**
  * Каналы для отправки команд
  */
-public enum NotificationChannel {
+public enum NotificationType {
     EMAIL,
-    HTTP;
+    HTTP
 }

@@ -23,7 +23,7 @@ public class Command implements Serializable {
     /**
      * Канал куда необходимо отправить напоминание
      */
-    private NotificationChannel notificationChannel;
+    private NotificationType notificationType;
 
     /**
      * Время когда необходимо отправить напоминание
@@ -46,12 +46,12 @@ public class Command implements Serializable {
         this.id = id;
     }
 
-    public NotificationChannel getNotificationChannel() {
-        return notificationChannel;
+    public NotificationType getNotificationType() {
+        return notificationType;
     }
 
-    public void setNotificationChannel(NotificationChannel notificationChannel) {
-        this.notificationChannel = notificationChannel;
+    public void setNotificationType(NotificationType notificationType) {
+        this.notificationType = notificationType;
     }
 
     public Date getTime() {

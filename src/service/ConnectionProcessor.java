@@ -22,7 +22,7 @@ public class ConnectionProcessor {
                 //как чтение завершится, обрабатываем данные
                 CommandProcessor.process(buffer);
             } catch (InterruptedException | ExecutionException e) {
-                e.printStackTrace();
+                ExceptionHandler.handleAndExit(e);
             }
         }
     }

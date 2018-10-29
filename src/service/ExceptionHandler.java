@@ -7,7 +7,7 @@ import static utils.Logger.log;
  */
 public class ExceptionHandler {
 
-    public static void handle(Exception ex) {
+    public static void handleAndExit(Exception ex) {
         log("Ошибка: " + ex.getMessage());
         System.exit(1);
     }

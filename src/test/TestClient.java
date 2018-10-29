@@ -1,7 +1,7 @@
 package test;
 
 import model.Command;
-import model.NotificationChannel;
+import model.NotificationType;
 import utils.Serializer;
 
 import java.io.IOException;
@@ -15,9 +15,11 @@ import java.util.concurrent.Future;
 
 public class TestClient {
 
+    private static final int PORT = 8080;
+
     public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
         AsynchronousSocketChannel client = AsynchronousSocketChannel.open();
-        InetSocketAddress hostAddress = new InetSocketAddress("localhost", 8081);
+        InetSocketAddress hostAddress = new InetSocketAddress("localhost", PORT);
         Future future = client.connect(hostAddress);
         future.get();
         System.out.println("TestClient is started: " + client.isOpen());
@@ -29,11 +31,11 @@ public class TestClient {
 
         //сохдание и отправка комманды
         Command command = new Command();
-        command.setMessage("поход к врачу");
+        command.setMessage("Поход к врачу");
         command.setId(UUID.randomUUID().toString());
-        command.setDestination("123@mail.ru");
+        command.setDestination("kirbimerish@gmail.com");
         command.setTime(calendar.getTime());
-        command.setNotificationChannel(NotificationChannel.EMAIL);
+        command.setNotificationType(NotificationType.EMAIL);
         client.write(ByteBuffer.wrap(serializer.serialize(command))).get();
         client.close();
     }

@@ -1,7 +1,7 @@
 package service;
 
 import model.Command;
-import model.NotificationChannel;
+import model.NotificationType;
 import utils.Logger;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -17,12 +17,12 @@ public class Scheduler {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                if (command.getNotificationChannel() == NotificationChannel.EMAIL) {
-                    //код отправки на EMAIL
-                    System.out.println("Cообщение " + command.toString() + " отправлено на email: " + command.getDestination());
-                } else if (command.getNotificationChannel() == NotificationChannel.HTTP) {
+                if (command.getNotificationType() == NotificationType.EMAIL) {
+                    //отправка email, нужно указать свою почту и пароль
+                    EmailSender emailSender = new EmailSender("ваша почта","пароль");
+                    emailSender.send("Напоминание", command.getMessage(), emailSender.getUsername(), command.getDestination());
+                } else if (command.getNotificationType() == NotificationType.HTTP) {
                     //код отправки HTTP
-                    System.out.println("Cообщение " + command.toString() + " отправлено на http:// " + command.getDestination());
                 }
             }
         }, command.getTime());

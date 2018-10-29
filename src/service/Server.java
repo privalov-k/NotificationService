@@ -10,14 +10,16 @@ import static utils.Logger.log;
  */
 public class Server {
 
+    private static final int PORT = 8080;
+
     public static void run() {
         try (AsynchronousServerSocketChannel server = AsynchronousServerSocketChannel.open()) {
-            server.bind(new InetSocketAddress("localhost", 8081));
-            log("Сервер запущен на порту = 8081");
+            server.bind(new InetSocketAddress("localhost", PORT));
+            log("Сервер запущен на порту = " + PORT);
             log("Ожидание подключений...");
             ConnectionProcessor.process(server);
         } catch (IOException ex) {
-            ExceptionHandler.handle(ex);
+            ExceptionHandler.handleAndExit(ex);
         }
     }
 }

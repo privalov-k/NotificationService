@@ -12,7 +12,7 @@ public class Serializer<T> {
         try (ObjectInputStream stream = new ObjectInputStream(new ByteArrayInputStream(data))) {
             return (T) stream.readObject();
         } catch (IOException | ClassNotFoundException e) {
-            ExceptionHandler.handle(e);
+            ExceptionHandler.handleAndExit(e);
         }
         return null;
     }
@@ -24,7 +24,7 @@ public class Serializer<T> {
             return byteArrayOutputStream.toByteArray();
 
         } catch (IOException e) {
-            ExceptionHandler.handle(e);
+            ExceptionHandler.handleAndExit(e);
         }
         return null;
     }
