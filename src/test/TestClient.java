@@ -3,7 +3,6 @@ package test;
 import model.Command;
 import model.NotificationType;
 import utils.Serializer;
-
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;

@@ -1,6 +1,5 @@
 package utils;
 
-import service.ExceptionHandler;
 import java.io.*;
 
 /**
@@ -12,7 +11,7 @@ public class Serializer<T> {
         try (ObjectInputStream stream = new ObjectInputStream(new ByteArrayInputStream(data))) {
             return (T) stream.readObject();
         } catch (IOException | ClassNotFoundException e) {
-            ExceptionHandler.handleAndExit(e);
+            Logger.log("Ошибка во время десереализации");
         }
         return null;
     }
@@ -24,7 +23,7 @@ public class Serializer<T> {
             return byteArrayOutputStream.toByteArray();
 
         } catch (IOException e) {
-            ExceptionHandler.handleAndExit(e);
+           Logger.log("Ошибка во время сереализации");
         }
         return null;
     }

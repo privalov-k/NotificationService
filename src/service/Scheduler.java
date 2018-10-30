@@ -1,5 +1,6 @@
 package service;
 
+import model.Account;
 import model.Command;
 import model.NotificationType;
 import utils.Logger;
@@ -19,8 +20,9 @@ public class Scheduler {
             public void run() {
                 if (command.getNotificationType() == NotificationType.EMAIL) {
                     //отправка email, нужно указать свою почту и пароль
-                    EmailSender emailSender = new EmailSender("ваша почта","пароль");
-                    emailSender.send("Напоминание", command.getMessage(), emailSender.getUsername(), command.getDestination());
+                    Account account = new Account("ваша почта", "пароль");
+                    EmailSender emailSender = new EmailSender(account);
+                    emailSender.send("Напоминание", command.getMessage(), account.getUsername(), command.getDestination());
                 } else if (command.getNotificationType() == NotificationType.HTTP) {
                     //код отправки HTTP
                 }

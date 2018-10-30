@@ -1,5 +1,6 @@
 package service;
 
+import utils.Logger;
 import java.nio.ByteBuffer;
 import java.nio.channels.AsynchronousServerSocketChannel;
 import java.nio.channels.AsynchronousSocketChannel;
@@ -22,7 +23,7 @@ public class ConnectionProcessor {
                 //как чтение завершится, обрабатываем данные
                 CommandProcessor.process(buffer);
             } catch (InterruptedException | ExecutionException e) {
-                ExceptionHandler.handleAndExit(e);
+                Logger.log("Ошибка во время соединения");
             }
         }
     }
